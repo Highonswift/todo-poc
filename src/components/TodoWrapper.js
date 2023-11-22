@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Todo } from "./Todo";
 import { TodoForm } from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
+import axios from "axios";
 
 export const TodoWrapper = () => {
   const [todos, setTodos] = useState([]);
-
+  const formData = new FormData()
   const addTodo = (todo) => {
-    setTodos([
-      ...todos,
-      { id: uuidv4(), task: todo, completed: false, isEditing: false },
-    ]);
+    // setTodos([
+    //   ...todos,
+    //   { id: uuidv4(), task: todo, completed: false, isEditing: false },
+    // ]);
+    setTodos(todo)
   }
 
-  const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
+  const deleteTodo = (id) => {
+    axios.delete(`${process.env.REACT_APP_API_URL}delete/${id}`).then((res) => {
+      setTodos(res.data)
+    })
+    // setTodos(todos.filter((todo) => todo.id !== id));
+  }
 
   const toggleComplete = (id) => {
     setTodos(
@@ -33,12 +40,23 @@ export const TodoWrapper = () => {
   }
 
   const editTask = (task, id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
-      )
-    );
+    formData.append("title", task)
+    // setTodos(
+    //   todos.map((todo) =>
+    //     todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
+    //   )
+    // );
+    axios.post(`${process.env.REACT_APP_API_URL}update/${id}`, formData).then((res) => {
+      setTodos(res.data)
+    })
   };
+
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_API_URL).then((res) => { 
+      setTodos(res.data)
+      console.log(res);
+    })
+  }, []);
 
   return (
     <div className="TodoWrapper">

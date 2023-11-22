@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "009393de-f74d-480a-8e65-9d041ded91f0",
+		"name": "Todo-Flask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18904135",
+		"_collection_link": "https://crimson-meadow-312931.postman.co/workspace/My-Workspace~0dccd5b6-d05d-4f2a-8aeb-9b9966af6c25/collection/23590628-009393de-f74d-480a-8e65-9d041ded91f0?action=share&source=collection_link&creator=18904135"
+	},
+	"item": [
+		{
+			"name": "create task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Sample",
+							"type": "text"
+						},
+						{
+							"key": "desc",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://todo-4kyh.onrender.com/",
+					"protocol": "https",
+					"host": [
+						"todo-4kyh",
+						"onrender",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Sample",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "desc",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://todo-4kyh.onrender.com/",
+					"protocol": "https",
+					"host": [
+						"todo-4kyh",
+						"onrender",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
